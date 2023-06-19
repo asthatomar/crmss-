@@ -1,0 +1,390 @@
+<%- include('partials/head') %>
+
+  <body>
+    <%- include('partials/navbar') %>
+      <!-- <header class="nav"> -->
+      <!-- <div class="nav-comp">
+           <div class="nav-comp__logo">
+          <p>Tata</p>
+        </div> -->
+      <!-- <div class="nav-comp__heading"> -->
+      <!-- <p>Create Notification</p> -->
+      <!-- </div> -->
+      <!-- <div class="nav-comp__user"> -->
+      <!-- <p><em>Welcome, XYZ</em></p> -->
+      <!-- </div> -->
+      <!-- </div>  -->
+
+      <!-- <nav class="navbar-notification">
+          <div class="navbar-left">
+            <span class="create-notification">Create Notification</span>
+          </div>
+          <div class="navbar-right">
+            <span class="welcome-message">Welcome, <span id="user-name"></span></span>
+          </div>
+        </nav> -->
+
+
+
+
+      <!-- </header> -->
+
+      <div class="container">
+
+        <nav class="navbar-notification">
+          <div class="navbar-left">
+            <span class="create-notification">Create Notification</span>
+          </div>
+          <div class="navbar-right">
+            <span class="welcome-message">Welcome, <span id="user-name"></span></span>
+          </div>
+        </nav>
+
+        <!-- initial texts  -->
+
+        <div class="hero-content">
+          <div class="if-container">
+            <button class="hero-content__btn-first">
+              Auto-Generated Request No.
+            </button>
+
+            <div class="hero-content__check">
+              <p>Is it Related to FRCP?</p>
+              <label>
+                <input type="checkbox" />
+              </label>
+            </div>
+            <div class="hero-content__check">
+              <p>Is it a Repeat Incident?</p>
+              <label>
+                <input type="checkbox" />
+              </label>
+            </div>
+          </div>
+
+          <!-- Request Details  -->
+          <!-- <script>
+            function populateData() {
+              var pnoSelect = document.getElementById("pno");
+              var nameInput = document.getElementById("name");
+              var emailInput = document.getElementById("email");
+
+              // Get the selected option's value
+              var selectedPno = pnoSelect.value;
+
+              // Perform a lookup based on the selected value
+              var data = {
+                "1": {
+                  name: "John Doe",
+                  email: "john@example.com"
+                },
+                "2": {
+                  name: "Jane Smith",
+                  email: "jane@example.com"
+                },
+                "3": {
+                  name: "Bob Johnson",
+                  email: "bob@example.com"
+                }
+              };
+
+              // Populate the name and email inputs
+              if (data[selectedPno]) {
+                nameInput.value = data[selectedPno].name;
+                emailInput.value = data[selectedPno].email;
+                document.getElementById("email-error").textContent = ""; // Clear any previous error message
+              } else {
+                nameInput.value = "";
+                emailInput.value = "";
+                document.getElementById("email-error").textContent = "Invalid P no"; // Display an error message
+              }
+            }
+
+
+          </script> -->
+
+          <div class="container">
+            <div class="if-container">
+              <h2 class="heading">Request Details</h2>
+              <div class="field">
+                <label for="pno">P no:</label>
+                <select id="pno">
+                  <option value="0">Select your p no</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name">
+              </div>
+              <div class="field">
+                <label for="email">Email ID:</label>
+                <input type="text" id="email" placeholder="Email id">
+                <span id="email-error" style="color: red;"></span> <!-- Error message placeholder -->
+              </div>
+            </div>
+
+            <script>
+              document.getElementById("pno").addEventListener("change", function () {
+                populateData();
+              });
+            </script>
+
+
+
+            <!-- Requester's department details  -->
+
+            <div class="container">
+              <div class="if-container">
+                <h2 class="heading">Requester's Department Details</h2>
+                <div class="field">
+                  <label for="dept-code">Department Code:</label>
+                  <input type="text" id="dept-code" placeholder="Department Code">
+                </div>
+                <!-- <div class="field">
+                  <input type="text" id="dept-info" placeholder="ADEO001">
+                </div> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Approver Details  -->
+
+          <div class="container">
+            <div class="if-container">
+              <h2 class="heading">Approver Detail</h2>
+              <div class="field">
+                <label for="cost-centre">Cost Centre:</label>
+                <!-- <input type="text" id="cost-centre" placeholder="Cost Centre"> -->
+                <select id="cost-centre" onchange="updateApprovers()">
+                  <option value="">Select Cost Centre</option>
+                  <option value="A">Option 1</option>
+                  <option value="B">Option 2</option>
+                  <option value="C">Option 3</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="select-head">Select Head Approver:</label>
+                <select id="select-head">
+                  <option value="">-</option>
+                  <option value="head1" data-cost-centre="A">Head 1</option>
+                  <option value="head2" data-cost-centre="B">Head 2</option>
+                  <option value="head3" data-cost-centre="C">Head 3</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="select-alt-app">Select Alternate Approver:</label>
+                <select id="select-alt-app">
+                  <option value="">-</option>
+                  <option value="app1" data-cost-centre="A">App 1</option>
+                  <option value="app2" data-cost-centre="B">App 2</option>
+                  <option value="app3" data-cost-centre="C">App 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Non Mandatory Fields  -->
+
+          <div class="container">
+            <div class="if-container">
+              <h2 class="heading">Non Mandatory Field</h2>
+              <div class="field">
+                <label for="sanction-reference">Enter Sanction Reference:</label>
+                <input type="text" id="sanction-reference" placeholder="Enter Sanction Reference">
+              </div>
+            </div>
+          </div>
+
+          <!-- Mandatory Fields  -->
+
+          <div class="container">
+            <div class="if-container">
+              <h2 class="heading">Mandatory Field</h2>
+              <div class="field">
+                <label for="job-start-date">Job Start Date:</label>
+                <input type="date" id="job-start-date" placeholder="Select a date">
+              </div>
+              <div class="field">
+                <label for="expected-cost">Enter Expected Cost:</label>
+                <input type="text" id="expected-cost" placeholder="Enter expected cost">
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Provider Details -->
+
+          <div class="container">
+            <div class="if-container">
+              <h2 class="heading">Service Provider Details</h2>
+              <div class="inner-container">
+                <h3 class="inner-heading">Planning Plant Section</h3>
+                <div class="field">
+                  <label for="planning-plant">Planning Plant:</label>
+                  <input type="text" id="planning-plant" readonly>
+                  <a style="text-decoration: none; cursor: pointer" onclick="openPlanningPlantPopup()">Select</a>
+                </div>
+                <div class="field">
+                  <label for="service-department">Service Department:</label>
+                  <input type="text" id="service-department" readonly>
+                </div>
+                <div class="field">
+                  <label for="planner-group">Planner Group:</label>
+                  <input type="text" id="planner-group" readonly>
+                </div>
+                <div class="field">
+                  <label for="work-center">Work Center:</label>
+                  <input type="text" id="work-center" readonly>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Placeholder for planning plant popup -->
+          <div id="planning-plant-popup" class="popup-overlay" style="display: none;">
+            <div class="popup-content">
+              <h4>Select Planning Plant</h4>
+              <ul id="planning-plant-tree" class="popup-tree"></ul>
+              <button onclick="selectPlanningPlant()">Select</button>
+              <button onclick="cancelPlanningPlantSelection()">Cancel</button>
+            </div>
+          </div>
+          
+          <!-- Placeholder for service department popup -->
+          <div id="service-department-popup" class="popup-overlay" style="display: none;">
+            <div class="popup-content">
+              <h4>Select Service Department</h4>
+              <ul id="service-department-tree" class="popup-tree"></ul>
+              <button onclick="selectServiceDepartment()">Select</button>
+              <button onclick="cancelServiceDepartmentSelection()">Cancel</button>
+            </div>
+          </div>
+          
+          <!-- Placeholder for planner group popup -->
+          <div id="planner-group-popup" class="popup-overlay" style="display: none;">
+            <div class="popup-content">
+              <h4>Select Planner Group</h4>
+              <ul id="planner-group-tree" class="popup-tree"></ul>
+              <button onclick="selectPlannerGroup()">Select</button>
+              <button onclick="cancelPlannerGroupSelection()">Cancel</button>
+            </div>
+          </div>
+          
+          <!-- Placeholder for work center popup -->
+          <div id="work-center-popup" class="popup-overlay" style="display: none;">
+            <div class="popup-content">
+              <h4>Select Work Center</h4>
+              <ul id="work-center-tree" class="popup-tree"></ul>
+              <button onclick="selectWorkCenter()">Select</button>
+              <button onclick="cancelWorkCenterSelection()">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Contact Details  -->
+
+          <div class="container">
+            <div class="if-container">
+              <h2 class="heading">Contact Details</h2>
+              <div class="field">
+                <label for="contact-person-name">Enter Contact Person Name:</label>
+                <input type="text" id="contact-person-name">
+              </div>
+              <div class="field">
+                <label for="contact-number">Enter Contact Number:</label>
+                <input type="text" id="contact-number">
+                <span id="contact-number-validation"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Problem Details  -->
+
+          <div class="container">
+            <div class="if-container">
+              <h2 class="heading">Problem Details</h2>
+              <div class="field">
+                <label for="short-problem-detail">Enter Short Problem Detail:</label>
+                <input type="text" id="short-problem-detail" maxlength="30">
+                <span id="short-problem-detail-counter"></span>
+                <span id="short-problem-detail-validation"></span>
+              </div>
+              <div class="field">
+                <input type="text" id="myInput" placeholder="Functional Location*">
+                <a href="#" onclick="selectValue('Location you selected')">Select Value</a>
+              </div>
+              <div class="field">
+                <label for="exact-location">Enter Exact Location:</label>
+                <input type="text" id="exact-location" maxlength="90">
+                <span id="exact-location-counter"></span>
+                <span id="exact-location-validation"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- bottom buttons  -->
+
+          <div class="container1">
+            <div class="if-container">
+              <h2 class="heading">Select Option</h2>
+              <div class="hero-content__check">
+                <div class="radio-container">
+                  <input type="radio" id="repair" name="option" value="Repair/Strengthening">
+                  <label for="repair">Repair/Strengthening</label>
+                </div>
+              </div>
+              <div class="hero-content__check">
+                <div class="radio-container">
+                  <input type="radio" id="modification" name="option" value="Modification/Construction">
+                  <label for="modification">Modification/Construction</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- link  -->
+
+          <div class="last-link" style="display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #f4f4f4;
+        border-radius: 5px;">
+            <a style="text-decoration: none" href="">Click to view circular for modification</a>
+          </div>
+
+          <!-- last buttons  -->
+
+          <div class="last-buttons">
+            <button onclick="openLink()">Create</button>
+            <script>
+              function openLink() {
+                window.location.href = "https://www.example.com";
+              }
+            </script>
+
+            <button onclick="openLink()">Reset</button>
+
+            <script>
+              function openLink() {
+                window.location.href = "https://www.example.com";
+              }
+            </script>
+          </div>
+
+          <!-- end  -->
+
+
+        </div>
+
+      </div>
+
+      <%- include('partials/script') %>
+  </body>
+
+  </html>
